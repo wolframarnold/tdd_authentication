@@ -13,7 +13,15 @@
   %body
     #container
       .login
-        = link_to "Sign in with Twitter", '/auth/twitter'
+        %div
+          = session[:name]
+        %div
+          = image_tag session[:avatar]
+        %div
+          - if session[:uid].present?
+            = link_to "Sign out", '#'
+          - else
+            = link_to "Sign in with Twitter", '/auth/twitter'
 
       .flash
         - flash.each do |name, msg|
