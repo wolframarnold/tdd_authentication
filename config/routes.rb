@@ -60,6 +60,7 @@ TftAuthApp::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'
+  match 'sign_out' => 'sessions#destroy'
 
   root :to => "pages#home"
 end
