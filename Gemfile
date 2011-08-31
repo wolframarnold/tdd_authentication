@@ -46,4 +46,5 @@ end
 group :test do
   gem 'factory_girl_rails', '~> 1.1.0'
   gem 'webrat', '~> 0.7.3'
+  gem 'fakeweb', '~> 1.3.0'
 end

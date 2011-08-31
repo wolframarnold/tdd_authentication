@@ -25,3 +25,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+FakeWeb.allow_net_connect = false
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock(:twitter, {
+  :user_info => {:name => "Joe Smith", :nickname => 'joesmith', :image => 'http://example.com/joesmith.png' },
+  :uid => '123456790'
+})

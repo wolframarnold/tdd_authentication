@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  include ApplicationHelper  # makes signed_in? available in controller
+
   def create
     flash[:notice] = "Successfully logged in"
     session[:name] = request.env['omniauth.auth']['user_info']['name']
@@ -19,4 +21,5 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path
   end
+
 end
