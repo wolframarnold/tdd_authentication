@@ -1,9 +1,14 @@
 - if signed_in?
   %div
     = session[:name]
+    = image_tag provider_logo
   %div
     = image_tag session[:avatar]
   %div
     = link_to "Sign out", sign_out_path
 - else
   = link_to "Sign in with Twitter", '/auth/twitter'
+  %br
+  = link_to "Sign in with Facebook", '/auth/facebook'
+  %br
+  = link_to "Sign in with LinkedIn", '/auth/linked_in'

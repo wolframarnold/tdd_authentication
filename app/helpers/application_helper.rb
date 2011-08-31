@@ -4,4 +4,8 @@ module ApplicationHelper
     session[:uid].present?
   end
 
+  def provider_logo
+    "#{session[:provider]}_16.png"
+  end
+
 end
