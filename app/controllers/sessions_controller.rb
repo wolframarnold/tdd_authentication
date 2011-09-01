@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
 
-  include ApplicationHelper  # makes signed_in? available in controller
-
   def create
     flash[:notice] = "Successfully logged in"
     session[:name] = request.env['omniauth.auth']['user_info']['name']
@@ -9,7 +7,7 @@ class SessionsController < ApplicationController
     session[:provider] = request.env['omniauth.auth']['provider']
     session[:avatar] = request.env['omniauth.auth']['user_info']['image']
     session[:nickname] = request.env['omniauth.auth']['user_info']['nickname']
-    redirect_to root_path
+    redirect_to notes_path
   end
 
   def failure

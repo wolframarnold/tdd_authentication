@@ -32,3 +32,7 @@ OmniAuth.config.add_mock(:twitter, {
   :user_info => {:name => "Joe Smith", :nickname => 'joesmith', :image => 'http://example.com/joesmith.png' },
   :uid => '123456790'
 })
+
+def signed_in?
+  session[:uid].present?
+end

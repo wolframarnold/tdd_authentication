@@ -17,7 +17,7 @@ describe SessionsController do
 
     it 'redirects to root_path' do
       get :create, :provider => 'twitter'
-      response.should redirect_to(root_path)
+      response.should redirect_to(notes_path)
     end
   end
 
