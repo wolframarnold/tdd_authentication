@@ -7,8 +7,7 @@
   %div
     = link_to "Sign out", sign_out_path
 - else
-  = link_to "Sign in with Twitter", '/auth/twitter'
-  %br
-  = link_to "Sign in with Facebook", '/auth/facebook'
-  %br
-  = link_to "Sign in with LinkedIn", '/auth/linked_in'
+  Sign in with
+  = link_to image_tag('twitter_32.png'), '/auth/twitter', :title => 'Sign in with Twitter'
+  = link_to image_tag('facebook_32.png'), '/auth/facebook', :title => 'Sign in with Facebook'
+  = link_to image_tag('linked_in_32.png'), '/auth/linked_in', :title => 'Sign in with LinkedIn'

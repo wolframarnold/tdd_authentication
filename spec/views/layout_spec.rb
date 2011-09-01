@@ -12,7 +12,7 @@ describe 'pages/home' do
     end
 
     it 'should have a "Sign with Twitter" link' do
-      rendered.should have_selector("a[href='/auth/twitter']", :content => "Sign in with Twitter")
+      rendered.should have_selector("a[href='/auth/twitter'][title='Sign in with Twitter']")
     end
   end
 
