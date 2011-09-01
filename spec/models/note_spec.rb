@@ -5,4 +5,10 @@ describe Note do
     subject.should_not be_valid
     subject.errors[:title].should_not be_empty
   end
+
+  it 'requires a uid and provider' do
+    subject.should_not be_valid
+    subject.errors[:uid].should_not be_empty
+    subject.errors[:provider].should_not be_empty
+  end
 end
