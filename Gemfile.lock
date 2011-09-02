@@ -30,7 +30,12 @@ GEM
     activesupport (3.0.10)
     addressable (2.2.4)
     arel (2.0.10)
+    bcrypt-ruby (3.0.0)
     builder (2.1.2)
+    devise (1.4.4)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
     diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -99,6 +104,7 @@ GEM
       oa-more (= 0.2.6)
       oa-oauth (= 0.2.6)
       oa-openid (= 0.2.6)
+    orm_adapter (0.0.5)
     polyglot (0.3.2)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
@@ -151,6 +157,8 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
+    warden (1.0.5)
+      rack (>= 1.0)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -160,6 +168,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  devise (~> 1.4.4)
   factory_girl_rails (~> 1.1.0)
   fakeweb (~> 1.3.0)
   haml (~> 3.1.2)

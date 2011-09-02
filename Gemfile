@@ -34,6 +34,7 @@ gem 'haml-rails', '~> 0.3.4'
 gem 'sass', '~> 3.1.7'
 
 gem 'omniauth', '~> 0.2.6'
+gem 'devise', '~> 1.4.4'
 
 group :development do
   gem "nifty-generators"

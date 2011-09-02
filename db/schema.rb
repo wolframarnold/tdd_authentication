@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901040257) do
+ActiveRecord::Schema.define(:version => 20110902004140) do
 
   create_table "notes", :force => true do |t|
     t.string   "title"
@@ -23,5 +23,19 @@ ActiveRecord::Schema.define(:version => 20110901040257) do
   end
 
   add_index "notes", ["uid", "provider"], :name => "index_notes_on_uid_and_provider"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "uid"
+    t.string   "avatar"
+    t.string   "provider"
+    t.string   "email"
+    t.string   "nickname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["uid", "provider"], :name => "index_users_on_uid_and_provider"
 
 end

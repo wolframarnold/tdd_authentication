@@ -58,9 +58,15 @@ TftAuthApp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
-  match '/auth/:provider/callback' => 'sessions#create'
-  match '/auth/failure' => 'sessions#failure'
-  match 'sign_out' => 'sessions#destroy'
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
+    get 'sign_in', :to => 'pages#home', :as => :new_user_session
+    get 'sign_out', :to => 'sessions#destroy', :as => :destroy_user_session
+  end
+
+  #match '/auth/:provider/callback' => 'sessions#create'
+  #match '/auth/failure' => 'sessions#failure'
+  #match 'sign_out' => 'sessions#destroy'
 
   root :to => "pages#home"
 end
