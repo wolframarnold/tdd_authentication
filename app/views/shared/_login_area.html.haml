@@ -1,13 +1,11 @@
 - if signed_in?
   %div
-    = session[:name]
+    = current_user.name
     = image_tag provider_logo
   %div
-    = image_tag session[:avatar]
+    = image_tag current_user.avatar
   %div
-    = link_to "Sign out", sign_out_path
+    = link_to "Sign out", destroy_user_session_path
 - else
   Sign in with
-  = link_to image_tag('twitter_32.png'), '/auth/twitter', :title => 'Sign in with Twitter'
-  = link_to image_tag('facebook_32.png'), '/auth/facebook', :title => 'Sign in with Facebook'
-  = link_to image_tag('linked_in_32.png'), '/auth/linked_in', :title => 'Sign in with LinkedIn'
+  = link_to image_tag('twitter_32.png'), user_omniauth_authorize_path(:twitter), :title => 'Sign in with Twitter'

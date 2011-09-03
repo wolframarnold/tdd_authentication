@@ -1,22 +1,10 @@
 class SessionsController < ApplicationController
 
-  def create
-    flash[:notice] = "Successfully logged in"
-    session[:name] = request.env['omniauth.auth']['user_info']['name']
-    session[:uid] = request.env['omniauth.auth']['uid']
-    session[:provider] = request.env['omniauth.auth']['provider']
-    session[:avatar] = request.env['omniauth.auth']['user_info']['image']
-    session[:nickname] = request.env['omniauth.auth']['user_info']['nickname']
-    redirect_to notes_path
-  end
-
-  def failure
-    flash[:alert] = "Authentication failure"
-    redirect_to root_path
-  end
+  # The SessionsController only handles log-out now.
+  # Sign in and sign-in failure are handled by OmniauthCallbacksController
 
   def destroy
-    reset_session
+    sign_out # provided by Devise
     redirect_to root_path
   end
 

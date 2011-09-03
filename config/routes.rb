@@ -62,6 +62,7 @@ TftAuthApp::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
     get 'sign_in', :to => 'pages#home', :as => :new_user_session
     get 'sign_out', :to => 'sessions#destroy', :as => :destroy_user_session
+    get '/notes', :to => "notes#index", :as => :user_root  # Devise redirects to user_root (named route) after sign-in
   end
 
   #match '/auth/:provider/callback' => 'sessions#create'

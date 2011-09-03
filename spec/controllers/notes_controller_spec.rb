@@ -1,24 +1,25 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe NotesController do
+
   before do
     @note = Factory(:note)
-    @note_other = Factory(:note, :uid => 'abcdefg')
+    @user = @note.user
+    @note_other = Factory(:note)
   end
 
   context 'when not logged in' do
 
     it 'should redirect to login page' do
       get :index
-      response.should redirect_to(root_path)
+      response.should redirect_to(new_user_session_path)
     end
 
   end
 
   context 'when logged in' do
     before do
-      session[:uid] = @note.uid
-      session[:provider] = @note.provider
+      sign_in @user
     end
 
     it "index action should render index template" do

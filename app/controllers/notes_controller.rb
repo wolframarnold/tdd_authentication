@@ -1,10 +1,10 @@
 class NotesController < ApplicationController
 
-  before_filter :authenticate!
+  before_filter :authenticate_user!
   before_filter :find_note!, :only => [:edit, :update, :destroy]
 
   def index
-    @notes = Note.mine(session[:uid], session[:provider]).all
+    @notes = current_user.notes.all
   end
 
   def new
@@ -12,9 +12,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.new(params[:note])
-    @note.uid = session[:uid]
-    @note.provider = session[:provider]
+    @note = current_user.notes.create(params[:note])
     if @note.save
       redirect_to notes_url, :notice => "Successfully created note."
     else
@@ -41,7 +39,7 @@ class NotesController < ApplicationController
   private
 
   def find_note!
-    @note = Note.mine(session[:uid],session[:provider]).where(:id => params[:id]).first
+    @note = current_user.notes.where(:id => params[:id]).first
     if @note.nil?
       flash[:notice] = "You can't access this note"
       redirect_to notes_path

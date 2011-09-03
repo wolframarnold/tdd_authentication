@@ -6,9 +6,8 @@ describe Note do
     subject.errors[:title].should_not be_empty
   end
 
-  it 'requires a uid and provider' do
+  it 'requires a user' do
     subject.should_not be_valid
-    subject.errors[:uid].should_not be_empty
-    subject.errors[:provider].should_not be_empty
+    subject.errors[:user].should_not be_empty
   end
 end

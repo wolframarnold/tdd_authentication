@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe OmniauthCallbacksController do
-  include Devise::TestHelpers
 
   before do
     request.env["devise.mapping"] = Devise.mappings[:user]
@@ -15,8 +14,8 @@ describe OmniauthCallbacksController do
       get :twitter
     end
 
-    it 'should redirect to root path' do
-      response.should redirect_to(root_path)
+    it 'should redirect to notes index path' do
+      response.should redirect_to(notes_path)
     end
     it 'should sign the user in' do
       controller.user_signed_in?.should be_true
@@ -33,11 +32,16 @@ describe OmniauthCallbacksController do
       expect {
         get :twitter
       }.to change(User,:count)
+      assigns[:user].uid.should == 'random_uid_string'
+      assigns[:user].name.should == 'Joe Smith'
+      assigns[:user].nickname.should == 'joesmith'
+      assigns[:user].avatar.should == 'http://example.com/joesmith.png'
+      assigns[:user].provider.should == 'twitter'
     end
 
-    it 'should redirects to root_path' do
+    it 'should redirects to notes_path' do
       get :twitter
-      response.should redirect_to(root_path)
+      response.should redirect_to(notes_path)
     end
 
     it 'should sign the user in' do

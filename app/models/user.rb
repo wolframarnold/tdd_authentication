@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   scope :with_twitter_uid, lambda {|uid| where(:uid => uid)}
 
+  has_many :notes, :dependent => :destroy
 end

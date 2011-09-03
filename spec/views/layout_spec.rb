@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'pages/home' do
+  include Devise::TestHelpers
 
   context "when not signed in" do
     before do
@@ -12,16 +13,13 @@ describe 'pages/home' do
     end
 
     it 'should have a "Sign with Twitter" link' do
-      rendered.should have_selector("a[href='/auth/twitter'][title='Sign in with Twitter']")
+      rendered.should have_selector("a[href='/users/auth/twitter'][title='Sign in with Twitter']")
     end
   end
 
   context "when signed in" do
     before do
-      controller.request.session[:uid]    = 'some twitter uid'
-      controller.request.session[:name]   = 'Joe Smith'
-      controller.request.session[:avatar] = 'http://example.com/joe_smith'
-
+      sign_in Factory.create(:twitter_user)
       render :template => 'pages/home', :layout => 'layouts/application'
     end
 
@@ -30,7 +28,7 @@ describe 'pages/home' do
     end
 
     it 'should have a "Sign out" link' do
-      rendered.should have_selector("a[href='#{sign_out_path}']", :content => "Sign out")
+      rendered.should have_selector("a[href='#{destroy_user_session_path}']", :content => "Sign out")
     end
 
     it 'should have the name displayed' do
@@ -38,7 +36,7 @@ describe 'pages/home' do
     end
 
     it 'should have the avatar url displayed' do
-      rendered.should have_selector("div.login img[src='http://example.com/joe_smith']")
+      rendered.should have_selector("div.login img[src='http://example.com/joesmith.png']")
     end
   end
 end
